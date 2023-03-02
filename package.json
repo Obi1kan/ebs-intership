@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "json-serve": "json-server --watch src/db.json",
-    "init-db": "curl -o src/db.json https://jsonplaceholder.typicode.com/db"
+    "init-db": "curl -o src/db.json https://jsonplaceholder.typicode.com/db",
+    "script": "node src/add_pswd_perms"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
     "@tsconfig/node16": "^1.0.3",
     "@types/node": "^18.14.2",
     "typescript": "^4.9.5"
