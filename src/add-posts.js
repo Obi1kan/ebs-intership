@@ -3,6 +3,20 @@ import {faker} from "@faker-js/faker"
 const postUrl = "http://localhost:3000/posts"
 let posts = [];
 
+async function postPosts(posts, postUrl) {
+    for (let post of posts) {
+        await fetch(postUrl, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(post),
+        });
+
+        await new Promise(resolve => setTimeout(resolve, 100));
+    }
+}
+
 fetch(postUrl)
     .then((response) => response.json())
     .then((data) => {
@@ -19,5 +33,7 @@ fetch(postUrl)
             posts.push(newPost);
             id++;
         }
-        console.log(posts)
+        
+        postPosts(posts, postUrl);
+
     })

@@ -2,12 +2,26 @@ import {faker} from '@faker-js/faker';
 
 const userUrl = "http://localhost:3000/users";
 let users = [];
+
+async function postUsers(users, userUrl) {
+    for (let user of users) {
+        await fetch(userUrl, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(user),
+        });
+
+        await new Promise(resolve => setTimeout(resolve, 100));
+    }
+}
+
 fetch(userUrl)
     .then((response) => {
     return response.json();
   })
-    .then((data) => {
-    users = data;
+    .then(async (data) => {
     let lastId = data[data.length - 1].id + 1;
     for (let i = 0; i < 10; ++i){
         let newUser = {
@@ -38,4 +52,7 @@ fetch(userUrl)
         users.push(newUser);
         lastId++;
     }
+
+    postUsers(users, userUrl);
+    
   })
