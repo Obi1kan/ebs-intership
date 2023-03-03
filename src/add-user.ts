@@ -1,29 +1,27 @@
-import {faker} from '@faker-js/faker';
+import axios from 'axios'
+import {faker} from '@faker-js/faker'
 
-const userUrl = "http://localhost:3000/users";
-let users = [];
+const instance = axios.create({
+    baseURL: "http://localhost:3000"
+})
 
-async function postUsers(users, userUrl) {
-    for (let user of users) {
-        await fetch(userUrl, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(user),
-        });
+main();
 
-        await new Promise(resolve => setTimeout(resolve, 100));
-    }
+async function main(){
+    let lastId = await getId();
+    let user = createUsers(lastId);
+    postUsers(user);
 }
 
-fetch(userUrl)
-    .then((response) => {
-    return response.json();
-  })
-    .then(async (data) => {
-    let lastId = data[data.length - 1].id + 1;
-    for (let i = 0; i < 10; ++i){
+async function getId(){
+    let x = (await instance.get('/users')).data;
+    return x[x.length - 1].id;
+}
+
+function createUsers(lastId: number){
+    lastId++;
+    let users = [];
+    for (let i = 0; i < 10; i++){
         let newUser = {
             id: lastId,
             name: faker.name.fullName(),
@@ -52,7 +50,12 @@ fetch(userUrl)
         users.push(newUser);
         lastId++;
     }
+    return users;
+}
 
-    postUsers(users, userUrl);
-    
-  })
+async function postUsers(users: any){
+    for (let user of users){
+        await instance.post(`/users`, user);
+        await new Promise(resolve => setTimeout(resolve, 100));
+    }
+}
