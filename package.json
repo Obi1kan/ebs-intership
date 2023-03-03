@@ -7,7 +7,8 @@
   "scripts": {
     "json-serve": "json-server --watch src/db.json",
     "init-db": "curl -o src/db.json https://jsonplaceholder.typicode.com/db",
-    "script": "node src/add_pswd_perms"
+    "script": "node src/add_pswd_perms",
+    "execute": "ts-node src/add-pswd"
   },
   "author": "",
   "license": "ISC",
