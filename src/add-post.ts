@@ -1,9 +1,17 @@
 import axios from 'axios'
 import {faker} from '@faker-js/faker'
+import { delay } from './utils/delay';
 
 const instance = axios.create({
     baseURL: "http://localhost:3000"
 })
+
+interface Post {
+    userId: number,
+    id: number,
+    title: string,
+    body: string
+}
 
 main();
 
@@ -26,7 +34,7 @@ function createPosts(userId: number, postId: number){
     postId++;
 
     for (let i = 0; i < 10; i++){
-        let newPost = {
+        let newPost: Post = {
             userId,
             id: postId,
             title: faker.lorem.words(3),
@@ -38,9 +46,9 @@ function createPosts(userId: number, postId: number){
     return posts;
 }
 
-async function updatePosts(posts: any){
+async function updatePosts(posts: Array<Post>){
     for (let post of posts){
         await instance.post('/posts', post);
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await delay();
     }
 }

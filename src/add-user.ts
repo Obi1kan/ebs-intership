@@ -1,9 +1,42 @@
 import axios from 'axios'
 import {faker} from '@faker-js/faker'
+import { delay } from './utils/delay';
 
 const instance = axios.create({
     baseURL: "http://localhost:3000"
 })
+
+interface Adress{
+    street: string,
+    suite: string,
+    city: string,
+    zipcode: string,
+    geo: Geo
+}
+
+interface Geo {
+    lat: string,
+    lng: string
+}
+
+interface Company {
+    name: string,
+    catchPhrase: string,
+    bs: string
+}
+
+interface User {
+    id: number,
+    name: string,
+    username: string,
+    email: string,
+    password: string,
+    permission: string,
+    adress: Adress,
+    phone: string,
+    website: string,
+    company: Company
+}
 
 main();
 
@@ -22,7 +55,7 @@ function createUsers(lastId: number){
     lastId++;
     let users = [];
     for (let i = 0; i < 10; i++){
-        let newUser = {
+        let newUser: User = {
             id: lastId,
             name: faker.name.fullName(),
             username: faker.internet.userName(),
@@ -53,9 +86,9 @@ function createUsers(lastId: number){
     return users;
 }
 
-async function postUsers(users: any){
+async function postUsers(users: Array<User>){
     for (let user of users){
         await instance.post(`/users`, user);
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await delay();
     }
 }
