@@ -6,8 +6,8 @@
   "scripts": {
     "json-serve": "json-server --watch src/db.json",
     "init-db": "curl -o src/db.json https://jsonplaceholder.typicode.com/db",
-    "add-user": "ts-node src/add-user",
-    "add-post": "ts-node src/add-post"
+    "add-users": "ts-node src/add-users",
+    "add-posts": "ts-node src/add-posts"
   },
   "author": "",
   "license": "ISC",

@@ -1,10 +1,7 @@
 import axios from 'axios'
 import {faker} from '@faker-js/faker'
-import { delay } from './utils/delay';
-
-const instance = axios.create({
-    baseURL: "http://localhost:3000"
-})
+import { delay } from './utils/delay'
+import { mainAxios } from './utils/axios-instance'
 
 interface Post {
     userId: number,
@@ -16,39 +13,35 @@ interface Post {
 main();
 
 async function main(){
-    let [userId, postId] = await getId()
+    let {userId, postId} = await getId()
     let newPosts = createPosts(userId, postId);
     await updatePosts(newPosts);
 }
 
 async function getId(){
-    let x = (await instance.get('/posts')).data;
+    let x = (await mainAxios.get('/posts')).data;
     let userId = x[x.length - 1].userId;
     let postId = x[x.length - 1].id;
-    return [userId, postId]
+    return {userId, postId}
 }
 
 function createPosts(userId: number, postId: number){
-    let posts = [];
     userId++;
     postId++;
 
-    for (let i = 0; i < 10; i++){
-        let newPost: Post = {
-            userId,
-            id: postId,
-            title: faker.lorem.words(3),
-            body: faker.lorem.sentences(4, '\n')
-        }
-        posts.push(newPost);
-        postId++;
-    }
+    let posts: Array<Post> = [...Array(10)].map((_, index) => ({
+        userId,
+        id: postId + index,
+        title: faker.lorem.words(3),
+        body: faker.lorem.sentences(4, '\n')
+    }))
+
     return posts;
 }
 
 async function updatePosts(posts: Array<Post>){
     for (let post of posts){
-        await instance.post('/posts', post);
+        await mainAxios.post('/posts', post);
         await delay();
     }
 }
