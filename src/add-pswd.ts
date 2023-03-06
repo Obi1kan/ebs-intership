@@ -1,8 +1,7 @@
 import axios from 'axios'
 import {faker} from '@faker-js/faker'
-const instance = axios.create({
-    baseURL: "http://localhost:3000/"
-})
+import { mainAxios } from './utils/axios-instance'
+
 
 interface Adress{
     street: string,
@@ -45,7 +44,7 @@ async function main(){
 }
 
 async function getUsers(){
-    return (await instance.get('/users')).data;
+    return (await mainAxios.get('users')).data;
 }
 
 function updateUsersPassword(users: Array<User>){
@@ -58,7 +57,7 @@ function updateUsersPassword(users: Array<User>){
 
 async function saveUsers(users: Array<User>){
     for (let user of users){
-        await instance.patch(`/users/${user.id}`, {
+        await mainAxios.patch(`users/${user.id}`, {
             password: user.password,
             permission: user.permission
         });
