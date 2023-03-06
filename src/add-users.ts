@@ -81,6 +81,6 @@ function createUsers(lastId: number){
 async function postUsers(users: Array<User>){
     for (let user of users){
         await mainAxios.post(`/users`, user);
-        await delay();
+        await delay(100);
     }
 }

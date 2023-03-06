@@ -42,6 +42,6 @@ function createPosts(userId: number, postId: number){
 async function updatePosts(posts: Array<Post>){
     for (let post of posts){
         await mainAxios.post('/posts', post);
-        await delay();
+        await delay(100);
     }
 }
