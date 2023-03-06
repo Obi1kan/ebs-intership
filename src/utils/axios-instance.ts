@@ -1,7 +1,7 @@
-import axios from 'axios'
+import axios from "axios";
 
-require('dotenv').config();
+require("dotenv").config();
 
 export const mainAxios = axios.create({
-    baseURL: process.env.URL
-})
+  baseURL: process.env.URL,
+});
