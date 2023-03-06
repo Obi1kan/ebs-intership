@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "json-serve": "json-server --watch src/db.json",
     "init-db": "curl -o src/db.json https://jsonplaceholder.typicode.com/db",
