@@ -6,11 +6,11 @@
   "scripts": {
     "json-serve": "json-server --watch src/db.json",
     "init-db": "curl -o src/db.json https://jsonplaceholder.typicode.com/db",
-    "add-users": "ts-node src/add-users",
-    "add-post": "ts-node src/add-posts",
-    "add-pswd": "ts-node src/add-pswd",
-    "generate-random-string": "ts-node src/utils/generate-random-string",
-    "start": "nodemon src/main"
+    "add-users": "ts-node src/scripts/add-users",
+    "add-post": "ts-node src/scripts/add-posts",
+    "add-pswd": "ts-node src/scripts/add-pswd",
+    "generate-random-string": "ts-node src/scripts/generate-random-string",
+    "dev": "nodemon src/main"
   },
   "author": "",
   "license": "ISC",

@@ -2,9 +2,10 @@ import { mainAxios } from "./utils/axios-instance";
 import { User } from "./types/user";
 import jsonServer from "json-server";
 import jwt from "jsonwebtoken";
-require("dotenv").config();
+import bodyParser from "body-parser";
+import dotenv from "dotenv";
+dotenv.config();
 
-const bodyParser = require("body-parser");
 const server = jsonServer.create();
 const router = jsonServer.router("src/db.json");
 const middlewares = jsonServer.defaults();
@@ -24,10 +25,9 @@ server.post("/login", async (req, res) => {
   else {
     let token = jwt.sign(
       {
-        username: `${username}`,
-        password: `${password}`,
-        permission: `${result.permission}`,
-        exp: 2000000,
+        id: result.id,
+        permission: result.permission,
+        exp: Math.floor(Date.now() / 1000 + 24 * 60 * 60),
       },
       secret
     );

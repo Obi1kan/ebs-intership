@@ -1,7 +1,7 @@
 import axios from "axios";
 import { faker } from "@faker-js/faker";
-import { mainAxios } from "./utils/axios-instance";
-import { delay } from "./utils/delay";
+import { mainAxios } from "../utils/axios-instance";
+import { delay } from "../utils/delay";
 
 interface Adress {
   street: string;
