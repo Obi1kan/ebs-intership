@@ -31,7 +31,7 @@ server.post("/login", async (req, res) => {
       },
       secret
     );
-    res.send(`${token}`);
+    res.json({ token });
   }
 });
 
