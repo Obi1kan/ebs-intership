@@ -26,6 +26,7 @@ server.post("/login", async (req, res) => {
       {
         username: `${username}`,
         password: `${password}`,
+        permission: `${result.permission}`,
         exp: 2000000,
       },
       secret
