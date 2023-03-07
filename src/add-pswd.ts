@@ -1,6 +1,7 @@
 import axios from "axios";
 import { faker } from "@faker-js/faker";
 import { mainAxios } from "./utils/axios-instance";
+import { delay } from "./utils/delay";
 
 interface Adress {
   street: string;
@@ -38,8 +39,8 @@ main();
 
 async function main() {
   let users = await getUsers();
-  let updateUsers = updateUsersPassword(users);
-  await saveUsers(updateUsers);
+  let updateUsers = await updateUsersPassword(users);
+  saveUsers(updateUsers);
 }
 
 async function getUsers() {
@@ -60,5 +61,6 @@ async function saveUsers(users: Array<User>) {
       password: user.password,
       permission: user.permission,
     });
+    await delay(100);
   }
 }

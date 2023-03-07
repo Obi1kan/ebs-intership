@@ -31,7 +31,7 @@
 
 "@faker-js/faker@^7.6.0":
   version "7.6.0"
-  resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-7.6.0.tgz#9ea331766084288634a9247fcd8b84f16ff4ba07"
+  resolved "https://registry.npmjs.org/@faker-js/faker/-/faker-7.6.0.tgz"
   integrity sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==
 
 "@humanwhocodes/config-array@^0.11.8":
@@ -273,9 +273,9 @@ body-parser@1.20.1:
     type-is "~1.6.18"
     unpipe "1.0.0"
 
-body-parser@^1.19.0:
+body-parser@^1.19.0, body-parser@^1.20.2:
   version "1.20.2"
-  resolved "https://registry.npmjs.org/body-parser/-/body-parser-1.20.2.tgz"
+  resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.20.2.tgz#6feb0e21c4724d06de7ff38da36dad4f57a747fd"
   integrity sha512-ml9pReCu3M61kGlqoTm2umSXTlRTuGTx0bfYj+uIUKKYycG5NtSbeetV3faSU6R7ajOPw0g/J1PvK4qNy7s5bA==
   dependencies:
     bytes "3.1.2"
@@ -891,7 +891,7 @@ express@^4.17.1:
 
 faker@^6.6.6:
   version "6.6.6"
-  resolved "https://registry.yarnpkg.com/faker/-/faker-6.6.6.tgz#e9529da0109dca4c7c5dbfeaadbd9234af943033"
+  resolved "https://registry.npmjs.org/faker/-/faker-6.6.6.tgz"
   integrity sha512-9tCqYEDHI5RYFQigXFwF1hnCwcWCOJl/hmll0lr5D2Ljjb0o4wphb69wikeJDz5qCEzXCoPvG6ss5SDP6IfOdg==
 
 fast-deep-equal@^3.1.1, fast-deep-equal@^3.1.3:
@@ -1386,7 +1386,7 @@ json-schema-traverse@^0.4.1:
 
 json-server@^0.17.2:
   version "0.17.2"
-  resolved "https://registry.npmjs.org/json-server/-/json-server-0.17.2.tgz"
+  resolved "https://registry.yarnpkg.com/json-server/-/json-server-0.17.2.tgz#df89444314c6bee85e684fc8fc22a761545b53bd"
   integrity sha512-PKmTFfiUduibc9QyieY9PDiSG4CttFpqpVkwTvWWbGQaah4Id/gKqn5er4dnynUw4GVdjAzGKjSbBuVIlXM6mw==
   dependencies:
     body-parser "^1.19.0"
