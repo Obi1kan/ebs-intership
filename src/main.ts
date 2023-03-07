@@ -1,14 +1,14 @@
 import { mainAxios } from "./utils/axios-instance";
 import { User } from "./types/user";
 
-const jsonServer = require("json-server");
+import jsonServer from "json-server";
 const bodyParser = require("body-parser");
 const server = jsonServer.create();
 const router = jsonServer.router("src/db.json");
 const middlewares = jsonServer.defaults();
 
 server.use(bodyParser.json());
-server.post("/login", async (req: any, res: any) => {
+server.post("/login", async (req, res) => {
   const username: string = req.body.username;
   const password: string = req.body.password;
   let users = (await mainAxios.get("/users")).data;
@@ -17,7 +17,7 @@ server.post("/login", async (req: any, res: any) => {
       return element;
   });
   if (result == undefined)
-    res.status(404).send("Inccorect username or password");
+    res.status(404).json({ message: "Incorrect username or password" });
   else res.json(result);
 });
 
