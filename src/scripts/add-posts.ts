@@ -1,15 +1,8 @@
-import axios from "axios";
-import { faker } from "@faker-js/faker";
-import { delay } from "../utils/delay";
-import { mainAxios } from "../utils/axios-instance";
-
-interface Post {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
-
+import axios from 'axios';
+import { faker } from '@faker-js/faker';
+import { delay } from '../utils/delay';
+import { mainAxios } from '../utils/axios-instance';
+import { Post } from '../types/post';
 main();
 
 async function main() {
@@ -19,7 +12,7 @@ async function main() {
 }
 
 async function getId() {
-  let x = (await mainAxios.get("/posts")).data;
+  let x = (await mainAxios.get('/posts')).data;
   let userId = x[x.length - 1].userId;
   let postId = x[x.length - 1].id;
   return { userId, postId };
@@ -33,7 +26,7 @@ function createPosts(userId: number, postId: number) {
     userId,
     id: postId + index,
     title: faker.lorem.words(3),
-    body: faker.lorem.sentences(4, "\n"),
+    body: faker.lorem.sentences(4, '\n'),
   }));
 
   return posts;
@@ -41,7 +34,7 @@ function createPosts(userId: number, postId: number) {
 
 async function updatePosts(posts: Array<Post>) {
   for (let post of posts) {
-    await mainAxios.post("/posts", post);
+    await mainAxios.post('/posts', post);
     await delay(100);
   }
 }

@@ -1,39 +1,8 @@
-import axios from "axios";
-import { faker } from "@faker-js/faker";
-import { mainAxios } from "../utils/axios-instance";
-import { delay } from "../utils/delay";
-
-interface Adress {
-  street: string;
-  suite: string;
-  city: string;
-  zipcode: string;
-  geo: Geo;
-}
-
-interface Geo {
-  lat: string;
-  lng: string;
-}
-
-interface Company {
-  name: string;
-  catchPhrase: string;
-  bs: string;
-}
-
-interface User {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  password: string;
-  permission: string;
-  adress: Adress;
-  phone: string;
-  website: string;
-  company: Company;
-}
+import axios from 'axios';
+import { faker } from '@faker-js/faker';
+import { mainAxios } from '../utils/axios-instance';
+import { delay } from '../utils/delay';
+import { User } from '../types/user';
 
 main();
 
@@ -44,13 +13,13 @@ async function main() {
 }
 
 async function getUsers() {
-  return (await mainAxios.get("users")).data;
+  return (await mainAxios.get('users')).data;
 }
 
 function updateUsersPassword(users: Array<User>) {
   for (let user of users) {
     user.password = faker.internet.password();
-    user.permission = faker.helpers.arrayElement(["admin", "user"]);
+    user.permission = faker.helpers.arrayElement(['admin', 'user']);
   }
   return users;
 }
