@@ -2,11 +2,13 @@ import { mainAxios } from "./utils/axios-instance";
 import { User } from "./types/user";
 import jsonServer from "json-server";
 import jwt from "jsonwebtoken";
+require("dotenv").config();
 
 const bodyParser = require("body-parser");
 const server = jsonServer.create();
 const router = jsonServer.router("src/db.json");
 const middlewares = jsonServer.defaults();
+const secret: string = process.env.SECRET!;
 
 server.use(bodyParser.json());
 server.post("/login", async (req, res) => {
@@ -20,7 +22,14 @@ server.post("/login", async (req, res) => {
   if (result == undefined)
     res.status(404).json({ message: "Incorrect username or password" });
   else {
-    let token = jwt.sign({ foo: "bar" }, "secret");
+    let token = jwt.sign(
+      {
+        username: `${username}`,
+        password: `${password}`,
+        exp: 2000000,
+      },
+      secret
+    );
     res.send(`${token}`);
   }
 });
