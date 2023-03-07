@@ -1,7 +1,8 @@
 import { mainAxios } from "./utils/axios-instance";
 import { User } from "./types/user";
-
 import jsonServer from "json-server";
+import jwt from "jsonwebtoken";
+
 const bodyParser = require("body-parser");
 const server = jsonServer.create();
 const router = jsonServer.router("src/db.json");
@@ -18,7 +19,10 @@ server.post("/login", async (req, res) => {
   });
   if (result == undefined)
     res.status(404).json({ message: "Incorrect username or password" });
-  else res.json(result);
+  else {
+    let token = jwt.sign({ foo: "bar" }, "secret");
+    res.send(`${token}`);
+  }
 });
 
 server.use(middlewares);
