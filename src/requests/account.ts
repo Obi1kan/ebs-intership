@@ -20,8 +20,7 @@ router.patch('/', async (req, res) => {
   let token = req.headers.authorization!;
   let decoded = jwt.verify(token, secret) as Token;
   let id = decoded.id;
-  await mainAxios.patch(`users/${id}`, req.body);
-  let user = (await mainAxios.get(`users/${id}`)).data;
+  let user = await (await mainAxios.patch(`users/${id}`, req.body)).data;
   res.json(user);
 });
 
