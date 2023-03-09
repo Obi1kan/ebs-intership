@@ -2,6 +2,7 @@ import jsonServer from 'json-server';
 import dotenv from 'dotenv';
 import register from './requests/register';
 import login from './requests/login';
+import bodyParser from 'body-parser';
 
 dotenv.config();
 
@@ -10,6 +11,7 @@ const router = jsonServer.router('src/db.json');
 const middlewares = jsonServer.defaults();
 const secret = process.env.SECRET!;
 
+server.use(bodyParser.json());
 server.use('/login', login);
 server.use('/register', register);
 server.use(middlewares);

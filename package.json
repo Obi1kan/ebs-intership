@@ -10,7 +10,7 @@
     "add-post": "ts-node src/scripts/add-posts",
     "add-pswd": "ts-node src/scripts/add-pswd",
     "generate-random-string": "ts-node src/scripts/generate-random-string",
-    "dev": "nodemon src/main"
+    "dev": "nodemon src/main.ts"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +20,7 @@
     "@types/json-server": "^0.14.4",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.14.2",
+    "nodemon": "^2.0.21",
     "typescript": "^4.9.5"
   },
   "dependencies": {
