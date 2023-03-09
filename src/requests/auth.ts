@@ -1,6 +1,6 @@
 import express from 'express';
 import { mainAxios } from '../utils/axios-instance';
-import { create_token } from '../utils/create-token';
+import { createToken } from '../utils/create-token';
 import { User } from '../types/user';
 
 const router = express.Router();
@@ -16,7 +16,7 @@ router.post('/login', async (req, res) => {
   if (result == undefined)
     res.status(400).json({ message: 'Incorrect username or password' });
   else {
-    let token = create_token(result);
+    let token = createToken(result);
     res.json({ token });
   }
 });
@@ -24,7 +24,7 @@ router.post('/login', async (req, res) => {
 router.post('/register', async (req, res) => {
   let user: User = req.body;
   await mainAxios.post('users', user);
-  let token = create_token(user);
+  let token = createToken(user);
   res.json({ token });
 });
 
