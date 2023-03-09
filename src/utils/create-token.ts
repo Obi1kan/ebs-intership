@@ -1,16 +1,17 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import { User } from '../types/user';
 
 dotenv.config();
 let secret = process.env.SECRET!;
-export function create_token(user: any) {
+export function createToken(user: User) {
   let token = jwt.sign(
     {
       id: user.id,
       permission: user.permission,
-      exp: Math.floor(Date.now() / 1000 + 24 * 60 * 60),
     },
-    secret
+    secret,
+    { expiresIn: '1d' }
   );
   return token;
 }
