@@ -1,40 +1,8 @@
-import axios from "axios";
-import { faker } from "@faker-js/faker";
-import { delay } from "./utils/delay";
-import { mainAxios } from "./utils/axios-instance";
-
-interface Adress {
-  street: string;
-  suite: string;
-  city: string;
-  zipcode: string;
-  geo: Geo;
-}
-
-interface Geo {
-  lat: string;
-  lng: string;
-}
-
-interface Company {
-  name: string;
-  catchPhrase: string;
-  bs: string;
-}
-
-interface User {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  password: string;
-  permission: string;
-  adress: Adress;
-  phone: string;
-  website: string;
-  company: Company;
-}
-
+import axios from 'axios';
+import { faker } from '@faker-js/faker';
+import { delay } from '../utils/delay';
+import { mainAxios } from '../utils/axios-instance';
+import { User } from '../types/user';
 main();
 
 async function main() {
@@ -44,7 +12,7 @@ async function main() {
 }
 
 async function getId() {
-  let x = (await mainAxios.get("/users")).data;
+  let x = (await mainAxios.get('/users')).data;
   return x[x.length - 1].id;
 }
 
@@ -56,11 +24,11 @@ function createUsers(lastId: number) {
     username: faker.internet.userName(),
     email: faker.internet.email(),
     password: faker.internet.password(),
-    permission: faker.helpers.arrayElement(["admin", "user"]),
+    permission: faker.helpers.arrayElement(['admin', 'user']),
     adress: {
       street: faker.address.street(),
       suite:
-        faker.helpers.arrayElement(["Suite ", "Apt "]) +
+        faker.helpers.arrayElement(['Suite ', 'Apt ']) +
         faker.address.buildingNumber(),
       city: faker.address.cityName(),
       zipcode: faker.address.zipCode(),
