@@ -1,0 +1,44 @@
+Arguments: 
+  E:\Apps\node.exe C:\Users\CEITI\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install --mutex network:42424 --non-interactive
+
+PATH: 
+  C:\Python311\Scripts\;C:\Python311\;C:\Program Files\Python310\Scripts\;C:\Program Files\Python310\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;E:\Apps\;E:\Apps\Git\cmd;C:\Users\CEITI\AppData\Local\Microsoft\WindowsApps;C:\Program Files (x86)\Nmap;C:\Users\CEITI\AppData\Local\Programs\Microsoft VS Code\bin;E:\PyCharm Community Edition 2022.2.3\bin;;C:\Program Files\JetBrains\CLion 2022.2.4\bin;;C:\MinGW\bin;C:\Users\CEITI\AppData\Roaming\npm;C:\Users\CEITI\AppData\Local\GitHubDesktop\bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  19.5.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/rxjs/-/rxjs-7.8.0.tgz: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (C:\Users\CEITI\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141517:19)
+      at Object.onceWrapper (node:events:626:28)
+      at ClientRequest.emit (node:events:512:28)
+      at TLSSocket.emitRequestTimeout (node:_http_client:841:9)
+      at Object.onceWrapper (node:events:626:28)
+      at TLSSocket.emit (node:events:524:35)
+      at Socket._onTimeout (node:net:564:8)
+      at listOnTimeout (node:internal/timers:568:17)
+      at process.processTimers (node:internal/timers:511:7)
+
+npm manifest: 
+  {
+    "name": "root",
+    "private": true,
+    "workspaces": [
+      "packages/*"
+    ],
+    "devDependencies": {
+      "lerna": "^6.5.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
