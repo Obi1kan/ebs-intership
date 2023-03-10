@@ -11,7 +11,7 @@ export function createToken(user: User) {
       permission: user.permission,
     },
     secret,
-    { expiresIn: '2d' }
+    { expiresIn: '1d' }
   );
   return token;
 }
