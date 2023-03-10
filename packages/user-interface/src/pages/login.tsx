@@ -1,9 +1,18 @@
-import { Http2ServerRequest } from "http2";
 import React from "react";
-
-let number = 3;
+import './styles/login.css'
 
 function Login(){
-    return ( <div>Anssn</div> )
+    return (
+        <div id="login">
+            <form>
+  <label htmlFor="username">Username:</label>
+  <input type="text" id="username" name="username" placeholder="Enter your username"/>
+  <label htmlFor="password">Password:</label>
+  <input type="password" id="password" name="password" placeholder="Enter your password"/>
+  <input type="submit" value="Submit"/>
+</form>
+
+        </div>
+    )
 }
 export default Login;
