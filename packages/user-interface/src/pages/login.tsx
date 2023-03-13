@@ -1,14 +1,18 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import './styles/auth.css'
 import { mainAxios } from "../utils/mainAxios";
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
+import { UserContext } from "../context/myContext";
 
 function Login(){
     
+    const navigate = useNavigate();
+    const {isAuth, setIsAuth} = useContext(UserContext)
     const [user, setUser] = useState({
         username: '',
         password: ''
     })
+
 
     const handleInput = (event: any) => {
         setUser({...user, [event.target.name]: event.target.value})
@@ -19,10 +23,12 @@ function Login(){
         
         mainAxios.post('/auth/login', user)
         .then(response => {
-            console.log(response.data.token);
             localStorage.setItem("token", response.data.token)
         })
         .catch(err => console.log(err))
+        setIsAuth(true)
+        navigate('/');
+        
     }
 
     return (

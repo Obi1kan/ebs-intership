@@ -8,6 +8,10 @@
   background-color: #F8F8F8;
 }
 
+h1{
+  text-align: center;
+}
+
 form {
     display: flex;
     flex-direction: column;

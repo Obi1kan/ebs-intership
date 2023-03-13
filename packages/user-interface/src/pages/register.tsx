@@ -1,11 +1,12 @@
 import React, {useState} from 'react'
 import { mainAxios } from '../utils/mainAxios'
 import {useNavigate, Link} from 'react-router-dom'
+import { UserContext } from '../context/myContext';
 
 function Register() {
 
     const navigate = useNavigate();
-
+    const {isAuth, setIsAuth} = React.useContext(UserContext);
     const [user, setUser] = useState({
         name: "",
         username: "",
@@ -23,6 +24,7 @@ function Register() {
         mainAxios.post('/auth/register', user)
         .then(response => localStorage.setItem("token", response.data.token))
         .catch(err => console.log(err))
+        setIsAuth(true);
         navigate('/')
     }
 
