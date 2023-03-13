@@ -1,4 +1,4 @@
-#login{
+#login, #register{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -21,6 +21,7 @@ form {
   label {
     font-weight: bold;
     margin-top: 10px;
+    /* text-align: left; */
   }
   
   input[type="text"],

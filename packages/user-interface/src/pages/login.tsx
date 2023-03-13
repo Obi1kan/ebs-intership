@@ -1,6 +1,7 @@
 import React, {useState} from "react";
-import './styles/login.css'
+import './styles/auth.css'
 import { mainAxios } from "../utils/mainAxios";
+import {Link} from 'react-router-dom'
 
 function Login(){
     
@@ -17,7 +18,10 @@ function Login(){
         event.preventDefault();
         
         mainAxios.post('/auth/login', user)
-        .then(response => console.log(response))
+        .then(response => {
+            console.log(response.data.token);
+            localStorage.setItem("token", response.data.token)
+        })
         .catch(err => console.log(err))
     }
 
@@ -28,6 +32,8 @@ function Login(){
                 <input type="text" onChange={handleInput} id="username" name="username" placeholder="Enter your username"/>
                 <label htmlFor="password">Password:</label>
                 <input type="password" onChange={handleInput} id="password" name="password" placeholder="Enter your password"/>
+                <span>Don't have an account</span>
+                <Link to = '/register'>Sign up</Link>
                 <input type="submit" value="Submit"/>
             </form>
         </div>
